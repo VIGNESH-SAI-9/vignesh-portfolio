@@ -1,0 +1,39 @@
+import React from 'react';
+import './About.css';
+
+const About = () => {
+  return (
+    <section id="about" className="about-section">
+      <div className="about-content">
+        <h2 className="section-title">01. About Me</h2>
+        <div className="about-grid">
+          <div className="about-text">
+            <p>
+              I am a passionate Unreal Engine Game Developer and Environment Designer, dedicated to creating visually stunning, performance-optimized, and highly immersive worlds. 
+            </p>
+            <p>
+              With a strong foundation in animation and cinematic lighting, my workflow spans from initial concept to final render. I focus on realistic texturing, advanced materials, and intricate level design that tell a story without speaking a word.
+            </p>
+            <div className="skills-list">
+              <div className="skill-item">Unreal Engine 5</div>
+              <div className="skill-item">Level Design</div>
+              <div className="skill-item">Environment Art</div>
+              <div className="skill-item">Animation Pipeline</div>
+              <div className="skill-item">Cinematic Lighting</div>
+              <div className="skill-item">Blueprints / C++</div>
+            </div>
+          </div>
+          <div className="about-image-container">
+            <div className="image-placeholder">
+              {/* This placeholder can later hold a profile photo or an artistic render */}
+              <div className="corner-accent top-left"></div>
+              <div className="corner-accent bottom-right"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
