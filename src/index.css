@@ -104,3 +104,54 @@ section {
   font-weight: 400;
   letter-spacing: 1px;
 }
+
+/* --- WOW FACTOR UPGRADES --- */
+
+/* 1. Cinematic 3D Grid Background */
+.perspective-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 600px;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.perspective-grid::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: -50%;
+  width: 200%;
+  height: 150%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform-origin: top;
+  transform: rotateX(75deg);
+  animation: scrollGrid 15s linear infinite;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
+}
+
+@keyframes scrollGrid {
+  from { background-position: 0 0; }
+  to { background-position: 0 50px; }
+}
+
+/* 2. Scroll Reveal Classes */
+.reveal-container {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

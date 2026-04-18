@@ -1,4 +1,5 @@
 import React from 'react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Projects.css';
 
 const projects = [
@@ -33,11 +34,14 @@ const projects = [
 ];
 
 const Projects = () => {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
-    <section id="projects" className="projects-section">
-      <h2 className="section-title">02. Selected Works</h2>
-      
-      <div className="projects-grid">
+    <section id="projects" className="projects-section" ref={ref}>
+      <div className={`reveal-container ${isVisible ? 'visible' : ''}`}>
+        <h2 className="section-title">02. Selected Works</h2>
+        
+        <div className="projects-grid">
         {projects.map((project) => (
           <div key={project.id} className="project-card">
             <div className="project-content">
@@ -50,6 +54,7 @@ const Projects = () => {
             </div>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );

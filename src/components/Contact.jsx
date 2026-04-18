@@ -1,10 +1,13 @@
 import React from 'react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Contact.css';
 
 const Contact = () => {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
-    <section id="contact" className="contact-section">
-      <div className="contact-container">
+    <section id="contact" className="contact-section" ref={ref}>
+      <div className={`contact-container reveal-container ${isVisible ? 'visible' : ''}`}>
         <h2 className="section-title">03. Let's Connect</h2>
         <p className="contact-desc">
           I'm always open to discussing new projects, creative ideas, or opportunities to be part of your next big game or cinematic experience.

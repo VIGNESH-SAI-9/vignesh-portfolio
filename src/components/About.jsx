@@ -1,10 +1,13 @@
 import React from 'react';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './About.css';
 
 const About = () => {
+  const [ref, isVisible] = useScrollReveal();
+
   return (
-    <section id="about" className="about-section">
-      <div className="about-content">
+    <section id="about" className="about-section" ref={ref}>
+      <div className={`about-content reveal-container ${isVisible ? 'visible' : ''}`}>
         <h2 className="section-title">01. About Me</h2>
         <div className="about-grid">
           <div className="about-text">
