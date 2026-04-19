@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import Preloader from './components/Preloader';
 import SmokeBackground from './components/SmokeBackground';
 import WaveDivider from './components/WaveDivider';
 import TubesCursorEffect from './components/TubesCursorEffect';
@@ -12,6 +13,7 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="app-container">
+      <Preloader />
       <SmokeBackground smokeColor="#aaaaaa" />
       <TubesCursorEffect color="#ffffff" />
       <Minimap />

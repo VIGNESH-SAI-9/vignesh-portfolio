@@ -11,11 +11,11 @@ const Hero = () => {
         <HeroShutterText text="VIGNESH SAI" className="hero-name" />
         
         <div className="role-container">
-          <TextScramble as="span" className="role" duration={1.5} characterSet="XQKWZPBRTM">UNREAL ENGINE GAME DEV</TextScramble>
+          <TextScramble as="span" className="role" duration={1.5} delay={3.0} characterSet="XQKWZPBRTM">UNREAL ENGINE GAME DEV</TextScramble>
           <span className="separator">•</span>
-          <TextScramble as="span" className="role" duration={1.5} characterSet="XQKWZPBRTM">ANIMATION</TextScramble>
+          <TextScramble as="span" className="role" duration={1.5} delay={3.1} characterSet="XQKWZPBRTM">ANIMATION</TextScramble>
           <span className="separator">•</span>
-          <TextScramble as="span" className="role" duration={1.5} characterSet="XQKWZPBRTM">ENVIRONMENT DESIGNER</TextScramble>
+          <TextScramble as="span" className="role" duration={1.5} delay={3.2} characterSet="XQKWZPBRTM">ENVIRONMENT DESIGNER</TextScramble>
         </div>
         
         <p className="hero-description">

@@ -7,6 +7,7 @@ export function TextScramble({
   children,
   duration = 0.8,
   speed = 0.04,
+  delay = 0,
   characterSet = defaultChars,
   className,
   as = 'h1',
@@ -66,8 +67,18 @@ export function TextScramble({
 
   useEffect(() => {
     if (!trigger) return;
-    scramble();
-  }, [trigger]);
+    let timeoutId;
+    if (delay > 0) {
+      timeoutId = setTimeout(() => {
+        scramble();
+      }, delay * 1000);
+    } else {
+      scramble();
+    }
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [trigger, delay]);
 
   return (
     <MotionComponent className={className} {...props}>
