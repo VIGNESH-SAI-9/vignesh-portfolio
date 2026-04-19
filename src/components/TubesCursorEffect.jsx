@@ -1,9 +1,22 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export function TubesCursorEffect({ color = '#ffffff' }) {
   const canvasRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  // Check if we are on desktop
+  useEffect(() => {
+    const updateMedia = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+    updateMedia();
+    window.addEventListener('resize', updateMedia);
+    return () => window.removeEventListener('resize', updateMedia);
+  }, []);
 
   useEffect(() => {
+    if (!isDesktop) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -11,9 +24,10 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
     let mouseMoved = false;
     let reqId = null;
 
+    // Initialize off-screen so it's not a visible dot
     const pointer = {
-      x: 0.5 * window.innerWidth,
-      y: 0.5 * window.innerHeight,
+      x: -1000,
+      y: -1000,
     };
     
     const params = {
@@ -32,6 +46,14 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
     }));
 
     function updateMousePosition(eX, eY) {
+      if (!mouseMoved) {
+        // Snap trail to first touch/mouse location immediately
+        mouseMoved = true;
+        trail.forEach(p => {
+          p.x = eX;
+          p.y = eY;
+        });
+      }
       pointer.x = eX;
       pointer.y = eY;
     }
@@ -41,13 +63,7 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
     };
 
     const handleMouseMove = (e) => {
-      mouseMoved = true;
       updateMousePosition(e.clientX, e.clientY);
-    };
-
-    const handleTouchMove = (e) => {
-      mouseMoved = true;
-      updateMousePosition(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
     };
 
     function setupCanvas() {
@@ -57,19 +73,20 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
 
     window.addEventListener('click', handleClick);
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('resize', setupCanvas);
 
     setupCanvas();
 
     function update(t) {
-      // for intro motion
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Do not draw anything until the user has actually moved their mouse
       if (!mouseMoved) {
-        pointer.x = (0.5 + 0.3 * Math.cos(0.002 * t) * Math.sin(0.005 * t)) * window.innerWidth;
-        pointer.y = (0.5 + 0.2 * Math.cos(0.005 * t) + 0.1 * Math.cos(0.01 * t)) * window.innerHeight;
+        reqId = window.requestAnimationFrame(update);
+        return;
       }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.strokeStyle = color;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
@@ -108,11 +125,12 @@ export function TubesCursorEffect({ color = '#ffffff' }) {
     return () => {
       window.removeEventListener('click', handleClick);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('resize', setupCanvas);
       if (reqId) cancelAnimationFrame(reqId);
     };
-  }, [color]);
+  }, [color, isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <canvas
