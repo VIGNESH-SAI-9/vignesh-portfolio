@@ -123,7 +123,8 @@ class SmokeRenderer {
   }
 
   reset() {
-    const { gl, program, vs, fs } = this;
+    const { gl, program, vs, fs, buffer } = this;
+    if (buffer) { gl.deleteBuffer(buffer); this.buffer = null; }
     if (!program) return;
     if (vs) { gl.detachShader(program, vs); gl.deleteShader(vs); }
     if (fs) { gl.detachShader(program, fs); gl.deleteShader(fs); }

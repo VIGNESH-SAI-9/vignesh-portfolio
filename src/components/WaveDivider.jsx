@@ -25,6 +25,11 @@ export function WaveDivider({ className = '' }) {
 
   useEffect(() => {
     setPath(0);
+    return () => {
+      if (state.current.reqId) {
+        cancelAnimationFrame(state.current.reqId);
+      }
+    };
   }, []);
 
   const lerp = (a, b, t) => a * (1 - t) + b * t;
