@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import SmokeBackground from './components/SmokeBackground';
 import WaveDivider from './components/WaveDivider';
 import TubesCursorEffect from './components/TubesCursorEffect';
+import Minimap from './components/Minimap';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -13,6 +14,7 @@ function App() {
     <div className="app-container">
       <SmokeBackground smokeColor="#aaaaaa" />
       <TubesCursorEffect color="#ffffff" />
+      <Minimap />
       <Navbar />
       <main>
         <Hero />
