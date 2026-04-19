@@ -1,0 +1,49 @@
+/* CSS adapted from Tailwind utility classes */
+
+.animated-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.textarea-wrapper {
+  /* Extra space can be managed by parent */
+}
+
+.animated-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--text-color, #ffffff);
+  display: flex;
+  margin: 0;
+}
+
+.textarea-label {
+  top: 1.5rem; /* Better alignment for multi-line boxes */
+}
+
+.animated-character {
+  display: inline-block;
+  line-height: 1;
+}
+
+.animated-input-element {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 0;
+  width: 100%;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  color: var(--text-color, #ffffff);
+  background: transparent;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.animated-input-element:focus {
+  border-bottom-color: #ffffff;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import TextScramble from './TextScramble';
+import HeroShutterText from './HeroShutterText';
 import './Hero.css';
 
 const Hero = () => {
@@ -6,14 +8,14 @@ const Hero = () => {
     <section id="top" className="hero-section">
       <div className="hero-content">
         <h2 className="hero-greeting">Hi, I'm</h2>
-        <h1 className="hero-name">VIGNESH SAI</h1>
+        <HeroShutterText text="VIGNESH SAI" className="hero-name" />
         
         <div className="role-container">
-          <span className="role">UNREAL ENGINE GAME DEV</span>
-          <span className="dot">•</span>
-          <span className="role">ANIMATION</span>
-          <span className="dot">•</span>
-          <span className="role">ENVIRONMENT DESIGNER</span>
+          <TextScramble as="span" className="role" duration={1.5} characterSet="XQKWZPBRTM">UNREAL ENGINE GAME DEV</TextScramble>
+          <span className="separator">•</span>
+          <TextScramble as="span" className="role" duration={1.5} characterSet="XQKWZPBRTM">ANIMATION</TextScramble>
+          <span className="separator">•</span>
+          <TextScramble as="span" className="role" duration={1.5} characterSet="XQKWZPBRTM">ENVIRONMENT DESIGNER</TextScramble>
         </div>
         
         <p className="hero-description">

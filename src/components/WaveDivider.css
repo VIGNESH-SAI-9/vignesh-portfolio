@@ -1,0 +1,43 @@
+.wave-divider-wrapper {
+  position: relative;
+  height: 1px;
+  width: 70vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.wave-divider-hitbox {
+  position: relative;
+  top: -1.25rem;
+  z-index: 10;
+  width: 100%;
+  height: 2.5rem;
+  cursor: none;
+  transition: top 0.3s ease, height 0.3s ease;
+}
+
+.wave-divider-hitbox:hover {
+  top: -9rem;
+  height: 18rem;
+}
+
+.wave-divider-svg {
+  position: absolute;
+  top: -6.25rem;
+  height: 12.5rem;
+  width: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.wave-divider-path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.5px;
+  transition: stroke 0.3s ease;
+}
+
+.wave-divider-wrapper:hover .wave-divider-path {
+  stroke: rgba(255, 255, 255, 0.8);
+}

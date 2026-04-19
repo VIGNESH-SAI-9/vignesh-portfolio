@@ -6,12 +6,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about-text p {
   font-size: 1.1rem;
-  margin-bottom: 2rem;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
   color: var(--text-secondary);
 }
 
@@ -23,30 +24,54 @@
 }
 
 .skill-item {
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1.2rem;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--text-primary);
-  border-radius: 2px;
+  color: #ffffff;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.06), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .about-image-container {
   position: relative;
-  width: 100%;
+  width: 72%;
+  margin: -5rem auto 0;
   aspect-ratio: 4 / 5;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.image-placeholder {
+.about-image-wrapper {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-  border: 1px solid rgba(255,255,255,0.1);
   position: relative;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--bg-color);
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.5s ease;
+}
+
+.about-image-wrapper:hover .about-image {
+  filter: grayscale(0%) contrast(1.1);
 }
 
 .corner-accent {
@@ -73,8 +98,12 @@
 @media (max-width: 992px) {
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
+
   .about-image-container {
-    padding: 0 10%;
+    width: min(100%, 350px);
+    margin: 0 auto;
+    order: -1; /* Show image above text */
   }
 }

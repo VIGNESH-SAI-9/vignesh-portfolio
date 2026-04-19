@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
+import { AnimatedInput } from './AnimatedInput';
+import { AnimatedTextarea } from './AnimatedTextarea';
 import './Contact.css';
 
 const Contact = () => {
   const [ref, isVisible] = useScrollReveal();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   return (
     <section id="contact" className="contact-section" ref={ref}>
@@ -15,13 +18,32 @@ const Contact = () => {
         
         <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
           <div className="form-group">
-            <input type="text" id="name" placeholder="Name" required />
+            <AnimatedInput 
+              id="name" 
+              label="Name" 
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              required 
+            />
           </div>
           <div className="form-group">
-            <input type="email" id="email" placeholder="Email" required />
+            <AnimatedInput 
+              id="email" 
+              type="email"
+              label="Email Address" 
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              required 
+            />
           </div>
           <div className="form-group">
-            <textarea id="message" rows="5" placeholder="Message" required></textarea>
+            <AnimatedTextarea 
+              id="message" 
+              label="Message" 
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              required 
+            />
           </div>
           <button type="submit" className="btn btn-primary submit-btn">Send Message</button>
         </form>

@@ -1,5 +1,6 @@
 import React from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
+import Photo from '../assets/Photo.png';
 import './About.css';
 
 const About = () => {
@@ -23,12 +24,12 @@ const About = () => {
               <div className="skill-item">Environment Art</div>
               <div className="skill-item">Animation Pipeline</div>
               <div className="skill-item">Cinematic Lighting</div>
-              <div className="skill-item">Blueprints / C++</div>
+              <div className="skill-item">Blueprints</div>
             </div>
           </div>
           <div className="about-image-container">
-            <div className="image-placeholder">
-              {/* This placeholder can later hold a profile photo or an artistic render */}
+            <div className="about-image-wrapper">
+              <img src={Photo} alt="Vignesh Sai" className="about-image" />
               <div className="corner-accent top-left"></div>
               <div className="corner-accent bottom-right"></div>
             </div>

@@ -4,6 +4,7 @@ import './CustomCursor.css';
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isOnImage, setIsOnImage] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -11,14 +12,17 @@ const CustomCursor = () => {
     };
 
     const handleMouseOver = (e) => {
-      // Check if the element being hovered is interactive
-      const isInteractive = 
+      const isInteractive =
         e.target.tagName.toLowerCase() === 'a' ||
         e.target.tagName.toLowerCase() === 'button' ||
         e.target.closest('a') !== null ||
         e.target.closest('button') !== null;
-      
+
       setIsHovering(isInteractive);
+
+      // Disable blend mode when hovering over images
+      const onImage = e.target.tagName.toLowerCase() === 'img';
+      setIsOnImage(onImage);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -33,15 +37,26 @@ const CustomCursor = () => {
   return (
     <>
       {/* The tiny leading dot */}
-      <div 
+      <div
         className="cursor-dot"
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          mixBlendMode: isOnImage ? 'normal' : 'difference',
+          backgroundColor: isOnImage ? 'rgba(255,255,255,0.5)' : '#ffffff',
+        }}
       ></div>
-      
+
       {/* The blend-mode expanding ring */}
-      <div 
+      <div
         className={`cursor-ring ${isHovering ? 'hover' : ''}`}
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          mixBlendMode: isOnImage ? 'normal' : 'difference',
+          backgroundColor: isOnImage ? 'transparent' : '#ffffff',
+          border: isOnImage ? '1px solid rgba(255,255,255,0.4)' : 'none',
+        }}
       ></div>
     </>
   );

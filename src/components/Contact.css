@@ -58,7 +58,16 @@
 }
 
 @media (max-width: 768px) {
+  .contact-section {
+    padding: 80px 5%;
+  }
+
+  .contact-container {
+    width: 100%;
+  }
+
   .submit-btn {
     align-self: stretch;
+    text-align: center;
   }
 }

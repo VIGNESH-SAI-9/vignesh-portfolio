@@ -1,0 +1,49 @@
+.shutter-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shutter-text-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.shutter-char {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0.1vw;
+  display: inline-flex;
+}
+
+.shutter-main {
+  display: inline-block;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
+.shutter-slice {
+  position: absolute;
+  inset: 0;
+  display: inline-block;
+  pointer-events: none;
+  z-index: 10;
+  /* Monochromatic styling to match site instead of Tailwind Indigo/Emerald */
+  color: rgba(255, 255, 255, 0.95);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.top-slice {
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+
+.middle-slice {
+  clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%);
+}
+
+.bottom-slice {
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
